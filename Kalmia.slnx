@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/Api/Api.csproj" />
-    <Project Path="src/ApplicationCore/ApplicationCore.csproj" />
-    <Project Path="src/DataAccess/DataAccess.csproj" />
+    <Project Path="src/Kalmia.Api/Kalmia.Api.csproj" />
+    <Project Path="src/Kalmia.Core/Kalmia.Core.csproj" />
+    <Project Path="src/Kalmia.Data/Kalmia.Data.csproj" />
   </Folder>
 </Solution>
