@@ -1,4 +1,4 @@
-# 0002: Controllers as Primary Web API Style over Minimal APIs
+# 0003: Controllers as primary Web API style over Minimal APIs
 
 ## Status
 Accepted

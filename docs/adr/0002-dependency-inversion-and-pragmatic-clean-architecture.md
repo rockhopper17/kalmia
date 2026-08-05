@@ -1,4 +1,4 @@
-# 0001: Dependency Inversion, Applied Pragmatically (Not Dogmatic Clean Architecture)
+# 0002: Dependency Inversion, applied pragmatically (not dogmatic Clean Architecture)
 
 ## Status
 Accepted
