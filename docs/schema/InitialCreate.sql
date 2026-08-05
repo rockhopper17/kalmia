@@ -13,17 +13,17 @@ CREATE TABLE [Activities] (
     [Id] int NOT NULL IDENTITY,
     [Name] nvarchar(200) NOT NULL,
     [ActivityType] nvarchar(50) NOT NULL,
-    [ActivityDate] date NOT NULL,
-    [StartTime] time NOT NULL,
-    [DurationSeconds] int NOT NULL,
-    [DistanceMeters] float NOT NULL,
-    [ElevationGainMeters] float NOT NULL,
+    [ActivityDate] date NOT NULL DEFAULT (CAST(GETUTCDATE() AS DATE)),
+    [StartTime] time NOT NULL DEFAULT '00:00:00',
+    [DurationSeconds] int NOT NULL DEFAULT 0,
+    [DistanceMeters] float NOT NULL DEFAULT 0.0E0,
+    [ElevationGainMeters] float NOT NULL DEFAULT 0.0E0,
     [Description] nvarchar(2000) NULL,
     CONSTRAINT [PK_Activities] PRIMARY KEY ([Id])
 );
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20260805194721_InitialCreate', N'10.0.10');
+VALUES (N'20260805225850_InitialCreate', N'10.0.10');
 
 COMMIT;
 GO

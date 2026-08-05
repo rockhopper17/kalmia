@@ -31,7 +31,9 @@ namespace Kalmia.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateOnly>("ActivityDate")
-                        .HasColumnType("date");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasDefaultValueSql("CAST(GETUTCDATE() AS DATE)");
 
                     b.Property<string>("ActivityType")
                         .IsRequired()
@@ -43,13 +45,19 @@ namespace Kalmia.Data.Migrations
                         .HasColumnType("nvarchar(2000)");
 
                     b.Property<double>("DistanceMeters")
-                        .HasColumnType("float");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("float")
+                        .HasDefaultValue(0.0);
 
                     b.Property<int>("DurationSeconds")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<double>("ElevationGainMeters")
-                        .HasColumnType("float");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("float")
+                        .HasDefaultValue(0.0);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -57,7 +65,9 @@ namespace Kalmia.Data.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<TimeOnly>("StartTime")
-                        .HasColumnType("time");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("time")
+                        .HasDefaultValue(new TimeOnly(0, 0, 0));
 
                     b.HasKey("Id");
 

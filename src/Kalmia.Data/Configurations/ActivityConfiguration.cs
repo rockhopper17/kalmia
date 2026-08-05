@@ -19,6 +19,26 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
             .HasMaxLength(50)
             .IsRequired();
 
+        builder.Property(a => a.ActivityDate)
+            .IsRequired()
+            .HasDefaultValueSql("CAST(GETUTCDATE() AS DATE)");
+
+        builder.Property(a => a.StartTime)
+            .IsRequired()
+            .HasDefaultValue(new TimeOnly(0, 0));
+
+        builder.Property(a => a.DurationSeconds)
+            .IsRequired()
+            .HasDefaultValue(0);
+
+        builder.Property(a => a.DistanceMeters)
+            .IsRequired()
+            .HasDefaultValue(0);
+
+        builder.Property(a => a.ElevationGainMeters)
+            .IsRequired()
+            .HasDefaultValue(0);
+
         builder.Property(a => a.Description)
             .HasMaxLength(2000);
     }
