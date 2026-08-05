@@ -27,18 +27,7 @@ public enum ActivityType
 }
 
 public record ActivityDto(
-    int Id,
-    string Name,
-    ActivityType ActivityType,
-    DateOnly ActivityDate,
-    TimeOnly StartTime,
-    int DurationSeconds,
-    double DistanceMeters,
-    double ElevationGainMeters,
-    string? Description
-);
-
-public record ActivityCreateDto(
+    int? Id,  // making Id nullable for dto use in create/read/update
     string Name,
     ActivityType ActivityType,
     DateOnly ActivityDate,

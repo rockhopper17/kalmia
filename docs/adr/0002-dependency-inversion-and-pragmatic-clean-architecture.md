@@ -11,9 +11,9 @@ The main architecture reference comes from the msft guidance "Architecting Moder
 ## Decision
 Strict adherence to dependency inversion principle while loosely following clean architecture and the eShopOnWeb reference.
 
-- Kalmia.ApplicationCore: holds domain entities and associated business logic, no other dependencies
-- Kalmia.DataAccess: EF Core DbContext and repository implementations, references ApplicationCore. Decided to create as a separate project from Infrastructure to highlight the importance of database work over other infr level actions that will come later.
-- Kalmia.Api: asp.net core web api using dependency injection, references ApplicationCore and not DataAccess.
+- Kalmia.Core: holds domain entities and associated business logic, no other dependencies
+- Kalmia.Data: EF Core DbContext and repository implementations, references Core. Decided to create as a separate project from Infrastructure to highlight the importance of database work over other infrastructure level actions that will come later.
+- Kalmia.Api: asp.net core web api using dependency injection, references Core and not Data.
 - infrastructure and clients will be created later
 
 ## Consequences
