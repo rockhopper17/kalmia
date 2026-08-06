@@ -4,6 +4,7 @@ using Kalmia.Data;
 using Kalmia.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,10 +30,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 
-    using var scope = app.Services.CreateScope();
-    var dbContext = scope.ServiceProvider.GetRequiredService<KalmiaDbContext>();
-    await SeedData.SeedAsync(dbContext);
+    // only need to run this once or if db is dropped
+    // using var scope = app.Services.CreateScope();
+    // var dbContext = scope.ServiceProvider.GetRequiredService<KalmiaDbContext>();
+    // await SeedData.SeedAsync(dbContext);
 }
 
 app.UseHttpsRedirection();
