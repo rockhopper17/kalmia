@@ -1,12 +1,13 @@
+using Kalmia.Core.Common;
 using Kalmia.Core.Entities;
 
 namespace Kalmia.Core.Interfaces;
 
 public interface IActivityService
 {
-    Task<List<ActivityDto>> GetAllAsync();
-    Task<ActivityDto?> GetByIdAsync(int id);
-    Task<ActivityDto> AddAsync(ActivityDto dto);
-    Task<bool> UpdateAsync(int id, ActivityDto dto);
-    Task<bool> DeleteAsync(int id);
+    Task<Result<List<ActivityDto>>> GetAllAsync();
+    Task<Result<ActivityDto>> GetByIdAsync(int id);
+    Task<Result<ActivityDto>> AddAsync(ActivityDto dto);
+    Task<Result<ActivityDto>> UpdateAsync(int id, ActivityDto dto);
+    Task<Result<Unit>> DeleteAsync(int id);
 }

@@ -1,3 +1,4 @@
+using Kalmia.Core.Common;
 using Kalmia.Core.Entities;
 using Kalmia.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,43 +12,46 @@ public class ActivitiesController :  ControllerBase
     private readonly IActivityService _srvc;
     public ActivitiesController(IActivityService srvc) => _srvc = srvc;
 
-    // GET /api/activitieds
+    // GET /api/activities
     [HttpGet]
     public async Task<ActionResult<List<ActivityDto>>> GetAll()
     {
-        var a = await _srvc.GetAllAsync();
-        return Ok(a);
+        var result = await _srvc.GetAllAsync();
+        return Ok(result.Value);
     }
 
     // GET /api/activities/{id}
     [HttpGet("{id}")]
     public async Task<ActionResult<ActivityDto>> GetById(int id)
     {
-        var a = await _srvc.GetByIdAsync(id);
-        return a is null ? NotFound() : Ok(a);
+        var result = await _srvc.GetByIdAsync(id);
+        return result.ErrorType == ResultErrorType.NotFound ? NotFound() : Ok(result.Value);
     }
 
     // POST /api/activities
     [HttpPost]
     public async Task<ActionResult<ActivityDto>> Create(ActivityDto dto)
     {
-        var a = await _srvc.AddAsync(dto);
-        return CreatedAtAction(nameof(GetById), new { id = a.Id }, a);
+        var result = await _srvc.AddAsync(dto);
+        if (!result.IsSuccess) return BadRequest(result.Errors);
+        return CreatedAtAction(nameof(GetById), new { id = result.Value!.Id }, result.Value);
     }
 
     // PUT /api/activities/{id}
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, ActivityDto dto)
     {
-        var b = await _srvc.UpdateAsync(id, dto);
-        return b ? NoContent() : NotFound();
+        var result = await _srvc.UpdateAsync(id, dto);
+        if (result.ErrorType == ResultErrorType.NotFound) return NotFound();
+        if (!result.IsSuccess) return BadRequest(result.Errors);
+        return Ok(result.Value);
     }
 
     // DELETE /api/activities/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var b = await _srvc.DeleteAsync(id);
-        return b ? NoContent() : NotFound();
+        var result = await _srvc.DeleteAsync(id);
+        return result.ErrorType == ResultErrorType.NotFound ? NotFound() : NoContent();
     }
 }
