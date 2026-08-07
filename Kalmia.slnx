@@ -4,4 +4,7 @@
     <Project Path="src/Kalmia.Core/Kalmia.Core.csproj" />
     <Project Path="src/Kalmia.Data/Kalmia.Data.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Unittests/Kalmia.Core.Tests/Kalmia.Core.Tests.csproj" />
+  </Folder>
 </Solution>
