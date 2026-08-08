@@ -10,6 +10,11 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
     {
         builder.HasKey(a => a.Id);
 
+        builder.HasOne<UserProfile>()
+            .WithMany()
+            .HasForeignKey(a => a.UserProfileId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.Property(a => a.Name)
             .HasMaxLength(200)
             .IsRequired();
@@ -41,5 +46,12 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
 
         builder.Property(a => a.Description)
             .HasMaxLength(2000);
+
+        builder.ToTable(t =>
+        {
+            t.HasCheckConstraint("CK_Activities_DistanceMeters_NonNegative", "[DistanceMeters] >= 0");
+            t.HasCheckConstraint("CK_Activities_ElevationGainMeters_NonNegative", "[ElevationGainMeters] >= 0");
+            t.HasCheckConstraint("CK_Activities_DurationSeconds_NonNegative", "[DurationSeconds] >= 0");
+        });
     }
 }

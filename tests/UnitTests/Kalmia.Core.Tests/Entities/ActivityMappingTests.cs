@@ -1,3 +1,4 @@
+using Kalmia.Core.Common;
 using Kalmia.Core.Entities;
 using Xunit;
 

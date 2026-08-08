@@ -1,15 +1,6 @@
-﻿namespace Kalmia.Core.Entities;
+﻿using Kalmia.Core.Common;
 
-// ------------------------------------------------------------------------------------------------
-// activity type enum, ie mtb, grvl, etc
-// ------------------------------------------------------------------------------------------------
-public enum ActivityType
-{
-    MtnBike = 1,
-    GrvlRide = 2,
-    RoadRide = 3,
-    MixedRide = 4
-}
+namespace Kalmia.Core.Entities;
 
 // ------------------------------------------------------------------------------------------------
 // main Activity entity class to map to db table
@@ -17,6 +8,7 @@ public enum ActivityType
 public class Activity
 {
     public int Id { get; set; }
+    public int UserProfileId { get; set; }
     public string Name { get; set; } = string.Empty;
     public ActivityType ActivityType { get; set; }
     public DateOnly ActivityDate { get; set; }
@@ -51,30 +43,30 @@ public record ActivityDto(
 );
 
 // ------------------------------------------------------------------------------------------------
-// manually mappings for entity <--> dto
+// manual mappings for entity <--> dto
 // ------------------------------------------------------------------------------------------------
 public static class ActivityMappingExtensions
 {
-    public static ActivityDto ToDto(this Activity activity)
+    public static ActivityDto ToDto(this Activity entity)
     {
         return new ActivityDto(
-            Id: activity.Id,
-            Name: activity.Name,
-            ActivityType: activity.ActivityType,
-            ActivityDate: activity.ActivityDate,
-            StartTime: activity.StartTime,
-            DurationSeconds: activity.DurationSeconds,
-            DistanceMeters: activity.DistanceMeters,
-            ElevationGainMeters: activity.ElevationGainMeters,
-            Description: activity.Description
+            Id: entity.Id,
+            Name: entity.Name,
+            ActivityType: entity.ActivityType,
+            ActivityDate: entity.ActivityDate,
+            StartTime: entity.StartTime,
+            DurationSeconds: entity.DurationSeconds,
+            DistanceMeters: entity.DistanceMeters,
+            ElevationGainMeters: entity.ElevationGainMeters,
+            Description: entity.Description
         );
     }
 
     public static Activity ToEntity(this ActivityDto dto)
     {
-        var activity = new Activity();
-        activity.SetFieldsFrom(dto);
-        return activity;
+        var entity = new Activity();
+        entity.SetFieldsFrom(dto);
+        return entity;
     }
 
     // public static void ApplyUpdate(this Activity activity, ActivityDto dto)
@@ -83,15 +75,15 @@ public static class ActivityMappingExtensions
     // }
 
     // create this method instead to be used from the service directly during update and in ToEntity during create
-    public static void SetFieldsFrom(this Activity activity, ActivityDto dto)
+    public static void SetFieldsFrom(this Activity entity, ActivityDto dto)
     {
-        activity.Name = dto.Name;
-        activity.ActivityType = dto.ActivityType;
-        activity.ActivityDate = dto.ActivityDate;
-        activity.StartTime = dto.StartTime;
-        activity.DurationSeconds = dto.DurationSeconds;
-        activity.DistanceMeters = dto.DistanceMeters;
-        activity.ElevationGainMeters = dto.ElevationGainMeters;
-        activity.Description = dto.Description;
+        entity.Name = dto.Name;
+        entity.ActivityType = dto.ActivityType;
+        entity.ActivityDate = dto.ActivityDate;
+        entity.StartTime = dto.StartTime;
+        entity.DurationSeconds = dto.DurationSeconds;
+        entity.DistanceMeters = dto.DistanceMeters;
+        entity.ElevationGainMeters = dto.ElevationGainMeters;
+        entity.Description = dto.Description;
     }
 }

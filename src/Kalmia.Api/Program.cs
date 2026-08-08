@@ -21,6 +21,8 @@ builder.Services.AddDbContext<KalmiaDbContext>(opt =>
     opt.UseSqlServer($"{baseConnection};Database={dbName}");
 });
 
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<IUserProfileService, UserProfileService>();
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 
@@ -33,9 +35,9 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference();
 
     // only need to run this once or if db is dropped
-    // using var scope = app.Services.CreateScope();
-    // var dbContext = scope.ServiceProvider.GetRequiredService<KalmiaDbContext>();
-    // await SeedData.SeedAsync(dbContext);
+    using var scope = app.Services.CreateScope();
+    var dbContext = scope.ServiceProvider.GetRequiredService<KalmiaDbContext>();
+    await SeedData.SeedAsync(dbContext);
 }
 
 app.UseHttpsRedirection();
