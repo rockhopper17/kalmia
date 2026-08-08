@@ -2,7 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/Kalmia.Api/Kalmia.Api.csproj" />
     <Project Path="src/Kalmia.Core/Kalmia.Core.csproj" />
-    <Project Path="src/Kalmia.Data/Kalmia.Data.csproj" />
+    <Project Path="src/Kalmia.Infrastructure/Kalmia.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Unittests/Kalmia.Core.Tests/Kalmia.Core.Tests.csproj" />

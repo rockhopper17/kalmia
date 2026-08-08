@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Kalmia.Core\Kalmia.Core.csproj" />
-    <ProjectReference Include="..\Kalmia.Data\Kalmia.Data.csproj" />
+    <ProjectReference Include="..\Kalmia.Infrastructure\Kalmia.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

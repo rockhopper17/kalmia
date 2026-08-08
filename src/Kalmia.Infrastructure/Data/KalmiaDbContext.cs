@@ -1,7 +1,7 @@
 using Kalmia.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Kalmia.Data;
+namespace Kalmia.Infrastructure.Data;
 
 public class KalmiaDbContext : DbContext
 {

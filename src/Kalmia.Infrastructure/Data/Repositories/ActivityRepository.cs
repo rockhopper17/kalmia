@@ -2,7 +2,7 @@ using Kalmia.Core.Entities;
 using Kalmia.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Kalmia.Data.Repositories;
+namespace Kalmia.Infrastructure.Data.Repositories;
 
 public class ActivityRepository : IActivityRepository
 {

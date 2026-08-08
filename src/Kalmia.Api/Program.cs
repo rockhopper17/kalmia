@@ -1,7 +1,7 @@
 using Kalmia.Core.Interfaces;
 using Kalmia.Core.Services;
-using Kalmia.Data;
-using Kalmia.Data.Repositories;
+using Kalmia.Infrastructure.Data;
+using Kalmia.Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using Scalar.AspNetCore;

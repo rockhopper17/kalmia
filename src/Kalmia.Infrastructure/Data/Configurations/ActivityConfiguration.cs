@@ -2,7 +2,7 @@ using Kalmia.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Kalmia.Data.Configurations;
+namespace Kalmia.Infrastructure.Data.Configurations;
 
 public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
 {
